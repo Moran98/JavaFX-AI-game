@@ -3,9 +3,10 @@ package ie.gmit.sw.ai;
 import javafx.application.Application;
 import net.sourceforge.jFuzzyLogic.FIS;
 
+
 public class Runner {
 	
-	private static final String FILE = "fuzzy.fcl";
+	private static final String FILE = "res/fuzzy/fuzzy.fcl";
 	
 	public static void main(String[] args) {
 		/*
@@ -35,6 +36,7 @@ public class Runner {
 		 */
 		Runner run = new Runner();
 		run.loadFCL();
+		run.loadNN();
 		Application.launch(GameWindow.class, args);
 	}
 	
@@ -48,9 +50,13 @@ public class Runner {
 		}else {
 			System.out.println("Successfully loaded in file " + FILE);
 		}
+		
+		fis.evaluate();
 	}
 	
 	public void loadNN() {
 		// TODO
+		NeuralNetwork n1 = new NeuralNetwork();
+		n1.load();
 	}
 }
