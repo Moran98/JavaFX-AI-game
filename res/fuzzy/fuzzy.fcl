@@ -1,3 +1,40 @@
-FUNCTION_BLOCK fuzzy
+FUNCTION_BLOCK action
+
+	VAR_INPUT
+		ghost_damage : REAL;
+		player_health : REAL;
+	END_VAR
+	
+	VAR_OUTPUT
+		victory : REAL;
+	END_VAR
+	
+	FUZZIFY ghost_damage
+		// 0 - 10 
+		TERM low := SIGM -4 2;
+		TERM average := GBELL 2 3 4;
+		TERM high := SIGM 4 7;
+	END_FUZZIFY
+	
+	FUZZIFY player_health
+		// 0 - 100
+		TERM dead := (0,1)(20,0);
+		TERM alive := SIGM 0.2 55;
+	END_FUZZIFY
+	
+	DEFUZZIFY victory
+		TERM poor := (0,1) (0.35,1) (0.7,0);
+		TERM good := (0.7,0) (0.8,1) (0.9,0);
+		TERM excellent := (0.9,0) (0.95,1) (1,1);
+		METHOD : COG;
+		DEFAULT := 0;
+	END_DEFUZZIFY
+	
+	RULEBLOCK Num1
+		RULE 1 : IF ghost_damage IS low THEN victory IS excellent;
+		RULE 2 : IF ghost_damage IS average THEN victory IS poor;
+		RULE 3 : IF ghost_damage IS high THEN victory IS poor;
+	END_RULEBLOCK
+	
 
 END_FUNCTION_BLOCK
