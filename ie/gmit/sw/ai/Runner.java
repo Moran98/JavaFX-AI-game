@@ -31,9 +31,9 @@ public class Runner {
 		 * keys to move the player character and the 'Z' key to 
 		 * toggle the zoom in / out.
 		 */
-		LoadFCL fcl = new LoadFCL();
-		fcl.loadFCL(1,2);
 		NeuralNetwork n1 = new NeuralNetwork();
+		LoadFCL f1 = new LoadFCL();
+		f1.getActions(1, 2, 3);
 		n1.load();
 		Application.launch(GameWindow.class, args);
 	}

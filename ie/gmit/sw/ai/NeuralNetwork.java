@@ -11,6 +11,7 @@ import org.encog.neural.networks.BasicNetwork;
 import org.encog.neural.networks.layers.BasicLayer;
 import org.encog.neural.networks.training.propagation.resilient.ResilientPropagation;
 
+
 public class NeuralNetwork {
 	
 	/*
