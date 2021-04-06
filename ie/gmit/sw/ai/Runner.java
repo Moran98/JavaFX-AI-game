@@ -1,13 +1,10 @@
 package ie.gmit.sw.ai;
 
 import javafx.application.Application;
-import net.sourceforge.jFuzzyLogic.FIS;
 
 
 public class Runner {
-	
-	private static final String FILE = "res/fuzzy/fuzzy.fcl";
-	
+		
 	public static void main(String[] args) {
 		/*
 		 * PLEASE READ CAREFULLY
@@ -34,29 +31,10 @@ public class Runner {
 		 * keys to move the player character and the 'Z' key to 
 		 * toggle the zoom in / out.
 		 */
-		Runner run = new Runner();
-		run.loadFCL();
-		run.loadNN();
-		Application.launch(GameWindow.class, args);
-	}
-	
-	// Function called to load in a FCL file.
-	public void loadFCL() {
-		FIS fis = FIS.load(FILE, true);
-		
-		if(fis == null) {
-			System.out.println("Error finding file " + FILE);
-			return;
-		}else {
-			System.out.println("Successfully loaded in file " + FILE);
-		}
-		
-		fis.evaluate();
-	}
-	
-	public void loadNN() {
-		// TODO
+		LoadFCL fcl = new LoadFCL();
+		fcl.loadFCL(1,2);
 		NeuralNetwork n1 = new NeuralNetwork();
 		n1.load();
+		Application.launch(GameWindow.class, args);
 	}
 }

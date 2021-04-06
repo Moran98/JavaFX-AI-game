@@ -2,7 +2,7 @@ FUNCTION_BLOCK action
 
 	VAR_INPUT
 		ghost_damage : REAL;
-		player_health : REAL;
+		ghost_health : REAL;
 	END_VAR
 	
 	VAR_OUTPUT
@@ -16,7 +16,7 @@ FUNCTION_BLOCK action
 		TERM high := SIGM 4 7;
 	END_FUZZIFY
 	
-	FUZZIFY player_health
+	FUZZIFY ghost_health
 		// 0 - 100
 		TERM dead := (0,1)(20,0);
 		TERM alive := SIGM 0.2 55;
@@ -29,6 +29,7 @@ FUNCTION_BLOCK action
 		METHOD : COG;
 		DEFAULT := 0;
 	END_DEFUZZIFY
+
 	
 	RULEBLOCK Num1
 		RULE 1 : IF ghost_damage IS low THEN victory IS excellent;
