@@ -48,6 +48,10 @@ public class CharacterTask extends Task<Void>{
 	 */
 	private Command cmd;
 	
+	public CharacterTask() {
+		super();
+	}
+	
 	public CharacterTask(GameModel model, char enemyID, int row, int col, Command cmd) {
 		this.model = model;
 		this.enemyID = enemyID;
@@ -98,5 +102,13 @@ public class CharacterTask extends Task<Void>{
         	}
     	}
 		return null;
+    }
+    
+    public void damage() {
+    	System.out.println("Player taking damage");
+    }
+    
+    public void healing() {
+    	System.out.println("Player taking damage");
     }
 }

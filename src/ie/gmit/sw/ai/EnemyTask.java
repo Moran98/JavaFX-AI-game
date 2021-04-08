@@ -6,7 +6,12 @@ public class EnemyTask implements Command {
 	private int damage;
 	private GameWindow p1;
 	
-	// Constructor 
+	// Constructor #1
+	public EnemyTask() {
+		super();
+	}
+	
+	// Constructor #2
 	public EnemyTask(int health, int damage, GameWindow p1) {
 		this.health = health;
 		this.damage = damage;
@@ -38,4 +43,12 @@ public class EnemyTask implements Command {
 		// TODO Auto-generated method stub
 		
 	}
+	
+    public void damage() {
+    	System.out.println("Ghost taking damage");
+    }
+    
+    public void healing() {
+    	System.out.println("Ghost taking damage");
+    }
 }
