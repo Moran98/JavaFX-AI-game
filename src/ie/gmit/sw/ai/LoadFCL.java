@@ -10,7 +10,7 @@ public class LoadFCL {
 	
 	private static LoadFCL instance;
 	private FIS fis;
-	private static final String FILE = "res/fuzzy/fuzzy.fcl";
+	private static final String FILE = "fcl/fuzzy.fcl";
 	private FunctionBlock fb;
 	
 	// Load in the FCL file

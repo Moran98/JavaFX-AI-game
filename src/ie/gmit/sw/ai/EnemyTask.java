@@ -1,6 +1,6 @@
 package ie.gmit.sw.ai;
 
-public class EnemyTask {
+public class EnemyTask implements Command {
 	
 	private int health;
 	private int damage;
@@ -11,6 +11,7 @@ public class EnemyTask {
 		this.health = health;
 		this.damage = damage;
 		this.p1 = p1;
+		
 	}
 	
 	// getters
@@ -30,5 +31,11 @@ public class EnemyTask {
 		} else {
 			return false;
 		}
+	}
+
+	@Override
+	public void execute() {
+		// TODO Auto-generated method stub
+		
 	}
 }
