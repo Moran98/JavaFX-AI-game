@@ -44,11 +44,15 @@ public class EnemyTask implements Command {
 		
 	}
 	
-    public void damage() {
-    	System.out.println("Ghost taking damage");
+	// Methods to determine the states of either
+	// being attacked or healing.
+    public void beingAttacked() {
+    	health-=10;
+    	System.out.println("Ghost taking DAMAGE");
     }
     
     public void healing() {
-    	System.out.println("Ghost taking damage");
+    	health+=10;
+    	System.out.println("Ghost is HEALING");
     }
 }

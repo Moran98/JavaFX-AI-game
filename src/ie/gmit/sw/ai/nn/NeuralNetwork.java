@@ -1,6 +1,8 @@
 package ie.gmit.sw.ai.nn;
 
 
+import java.io.Serializable;
+
 /*
  * ------------------------------------------------------------------------
  * B.Sc. (Hons) in Software Development - Artificial Intelligence
@@ -15,7 +17,7 @@ package ie.gmit.sw.ai.nn;
 
 import java.util.*;
 import ie.gmit.sw.ai.nn.activator.*;
-public class NeuralNetwork{
+public class NeuralNetwork implements Serializable{
 	private Activator activator;
 	private double[] inputs; //Stores inputs X1, X2,...,Xn 
 	private double[] hidden; //Stores activated inputs

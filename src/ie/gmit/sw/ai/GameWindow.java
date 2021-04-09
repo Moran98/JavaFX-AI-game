@@ -7,6 +7,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
+
 /*
  * Main UI for the game. You should not have to alter anything in this class.
  * 
@@ -32,7 +33,7 @@ public class GameWindow extends Application{
     	
 		VBox box = new VBox();
 		Scene scene = new Scene(box);
-		scene.setOnKeyPressed(e -> keyPressed(e)); //Add a key listener
+		scene.setOnKeyPressed(e -> keyPressed(e, stage)); //Add a key listener
 		stage.setScene(scene);
 		
     	Sprite[] sprites = getSprites(); //Load the sprites from the res directory
@@ -47,7 +48,7 @@ public class GameWindow extends Application{
 		stage.centerOnScreen();
 	}
 	
-    public void keyPressed(KeyEvent e) { //Handle key events
+    public void keyPressed(KeyEvent e, Stage stage) { //Handle key events
     	KeyCode key = e.getCode(); 
         if (key == KeyCode.RIGHT && currentCol < DEFAULT_SIZE - 1) {
         	if (model.isValidMove(currentRow, currentCol, currentRow, currentCol + 1, PLAYER_ID)) currentCol++;   		
@@ -59,10 +60,20 @@ public class GameWindow extends Application{
         	if (model.isValidMove(currentRow, currentCol, currentRow + 1, currentCol, PLAYER_ID)) currentRow++;        	  	
         }else if (key == KeyCode.Z){
         	view.toggleZoom();
-        }else{
+        }
+        
+        // Additional key commands to Maximize the screen window and to terminate the program
+        else if (key == KeyCode.G){
+        	stage.setMaximized(true);
+        }else if (key == KeyCode.X){
+            System.exit(0);
+        }
+        
+        else{
         	return;
         }
         
+
         updateView();       
     }
 	

@@ -1,11 +1,13 @@
 package ie.gmit.sw.ai;
 
+import java.io.IOException;
+
 import javafx.application.Application;
 
 
 public class Runner {
 		
-	public static void main(String[] args) {
+	public static void main(String[] args) throws ClassNotFoundException, IOException, Exception {
 		/*
 		 * PLEASE READ CAREFULLY
 		 * ---------------------
@@ -31,10 +33,10 @@ public class Runner {
 		 * keys to move the player character and the 'Z' key to 
 		 * toggle the zoom in / out.
 		 */
-		NeuralNetwork n1 = new NeuralNetwork();
+		LoadNN n = new LoadNN();
 		LoadFCL f1 = new LoadFCL();
-		f1.getActions(1, 2, 3);
-		n1.load();
+		f1.getActions(100, 100, 20);
+		n.Load();
 		Application.launch(GameWindow.class, args);
 	}
 }

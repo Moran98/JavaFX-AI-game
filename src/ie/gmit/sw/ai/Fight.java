@@ -7,6 +7,7 @@ public class Fight {
 	EnemyTask e = new EnemyTask();
 	
 	public void CheckDistance(int row, int col, int playerRow, int playerCol) {
+		
 		withinRange = Math.sqrt((playerRow - row) * (playerRow - row) + (playerCol - col) * (playerCol - col));
 		withinRange = Math.round(withinRange);
 		
@@ -18,8 +19,8 @@ public class Fight {
 	}
 	
 	public void Attacking() {
-		c.damage();
-		e.damage();
+		c.beingAttacked();
+		e.beingAttacked();
 	}
 	
 	public void Healing() {

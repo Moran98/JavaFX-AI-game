@@ -39,6 +39,8 @@ public class CharacterTask extends Task<Void>{
 	private char enemyID;
 	private int row;
 	private int col;
+	private int health;
+	private int damage;
 
 	/*
 	 * Configure each character with its own action. Use this functional interface
@@ -104,11 +106,24 @@ public class CharacterTask extends Task<Void>{
 		return null;
     }
     
-    public void damage() {
+	// Methods to determine the states of either
+	// being attacked or healing.
+    public void beingAttacked() {
+    	health-=10;
     	System.out.println("Player taking damage");
     }
     
     public void healing() {
+    	health+=10;
     	System.out.println("Player taking damage");
     }
+    
+	// boolean to check the state of the player (alive/dead)
+	public boolean isDead() {
+		if(health > 0) {
+			return true;
+		} else {
+			return false;
+		}
+	}
 }

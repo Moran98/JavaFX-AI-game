@@ -48,7 +48,7 @@ public class LoadFCL {
 		JFuzzyChart.get().chart(fis);
 		JFuzzyChart.get().chart(dapping.getDefuzzifier(), "Dapping Level", true);
 		
-		System.out.println("Ghost Health:" + ghost_health + "Player Damage" +player_damage + "Player Health" + player_health);
+		System.out.println("Ghost Health: " + ghost_health + "Player Health: " + player_health + "Player Damage: " +player_damage);
 
 		return dapping.getValue();
 	}
