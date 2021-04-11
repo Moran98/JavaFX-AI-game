@@ -30,7 +30,5 @@ public class EnemyNetwork {
             
         double[] test = {2, 0, 0};
         double[] result = nn.process(test);
-      
-       
     }
 }

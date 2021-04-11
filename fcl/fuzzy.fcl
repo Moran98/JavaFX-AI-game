@@ -1,49 +1,43 @@
-FUNCTION_BLOCK action
+FUNCTION_BLOCK Commands
 
 	VAR_INPUT
-		ghost_health : REAL;
-		player_damage : REAL;
-		player_health : REAL;
+		health : REAL;
+		damage : REAL;
 	END_VAR
 	
 	VAR_OUTPUT
-		victory : REAL;
+		action : REAL;
 	END_VAR
 	
-	FUZZIFY ghost_health
+	FUZZIFY health
+		TERM low := (0,1) (39,1) (40,0);
+		TERM average := (40,1) (69,1) (70,0);
+		TERM high := (70,1) (80,1) (100,1);
+	END_FUZZIFY
+	
+	FUZZIFY damage
 		// 0 - 10 
-		TERM low := SIGM -4 2;
-		TERM average := GBELL 2 3 4;
-		TERM high := SIGM 4 7;
+		TERM none := (0,1) (20,1) (40,0);
+		TERM low := (3,0) (40,1) (70,0);
+		TERM high := (50,0) (70,1) (100,1);
 	END_FUZZIFY
 	
-	FUZZIFY player_damage
-		// 0 - 10 
-		TERM none := (0,1) (1,0);
-		TERM low := (1,0) (4,1) (6,0);
-		TERM average := GAUSS 7 1;
-		TERM high := (7,0) (9,1) (10,1);
-	END_FUZZIFY
 	
-	FUZZIFY player_health
-		TERM dead := (0,1) (20,0);
-		TERM alive := SIGM 0.2 55;
-	END_FUZZIFY
-	
-	DEFUZZIFY victory
-		TERM poor := (0,1) (0.35,1) (0.7,0);
-		TERM good := (0.7,0) (0.8,1) (0.9,0);
-		TERM excellent := (0.9,0) (0.95,1) (1,1);
+	DEFUZZIFY action
+		TERM Flee := (0,1) (25,1) (49,0) (50,0);
+		TERM Attack := (50,1) (75,1) (100,0);
 		METHOD : COG;
 		DEFAULT := 0;
 	END_DEFUZZIFY
 
 	
-	RULEBLOCK Num1
-		RULE 1 : IF ghost_health IS low OR player_damage IS high THEN victory IS excellent;
-		RULE 2 : IF ghost_health IS average AND player_damage IS low THEN victory IS poor;
-		RULE 3 : IF ghost_health IS average AND player_damage IS average THEN victory IS good;
-		RULE 4 : IF ghost_health IS high AND player_damage IS NOT high THEN victory IS poor;
+	RULEBLOCK one
+		AND : MIN;
+		ACT : MIN;
+		ACCU : MAX;
+		//RULE 1 : IF health IS low OR damage IS high THEN action IS excellent;
+		//RULE 2 : IF health IS average AND damage IS low THEN action IS poor;
+		//RULE 3 : IF health IS high AND damage IS NOT high THEN action IS poor;
 	END_RULEBLOCK
 	
 

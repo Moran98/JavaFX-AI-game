@@ -1,6 +1,8 @@
 package ie.gmit.sw.ai.nn.activator;
 
-public class SigmoidActivator implements Activator{
+import java.io.Serializable;
+
+public class SigmoidActivator implements Activator, Serializable{
 	//f(x) = 1 / (1 + exp( − x))
 	public double activate(double value) {
 		return (1.0d / (1.0d + Math.exp(-value)));

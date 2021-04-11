@@ -41,6 +41,11 @@ public class CharacterTask extends Task<Void>{
 	private int col;
 	private int health;
 	private int damage;
+	private int NetworkHealth;
+	private LoadNN nn = new LoadNN();
+	private EnemyTask e = new EnemyTask();
+	private double enemyHealth = e.getHealth();
+	String action;
 
 	/*
 	 * Configure each character with its own action. Use this functional interface
@@ -72,6 +77,7 @@ public class CharacterTask extends Task<Void>{
     	 */
     	while (alive) {
         	Thread.sleep(SLEEP_TIME);
+        	
 
         	synchronized (model) {
         		//Randomly pick a direction up, down, left or right
@@ -106,6 +112,45 @@ public class CharacterTask extends Task<Void>{
 		return null;
     }
     
+	// getters
+	public int getHealth() {
+		return health;
+	}
+	
+	// setters
+	public void setHealth(int health) {
+		this.health = health;
+	}
+	
+	// Process depending on the range between player and ghost
+	public String process(int withinRange) throws Exception {
+		
+		int output = 0;
+		
+		if(health >=70) {
+			NetworkHealth=2;
+		} else if(health >= 40 && health <70) {
+			NetworkHealth=1;
+		} else {
+			NetworkHealth=0;
+		}
+		
+		double[] input = {health, damage, withinRange};
+		
+		output = new LoadNN().run(input);
+		
+		switch(output) {
+			case 1: 
+				action = "Attack";
+				break;
+			case 2:
+				action = "Fleeing";
+				break;
+		}
+		
+		return action;
+	}
+    
 	// Methods to determine the states of either
 	// being attacked or healing.
     public void beingAttacked() {
@@ -119,11 +164,12 @@ public class CharacterTask extends Task<Void>{
     }
     
 	// boolean to check the state of the player (alive/dead)
-	public boolean isDead() {
+	public boolean isAlive() {
 		if(health > 0) {
 			return true;
 		} else {
 			return false;
 		}
 	}
+	
 }

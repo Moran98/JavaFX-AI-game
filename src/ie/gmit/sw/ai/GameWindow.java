@@ -28,7 +28,7 @@ public class GameWindow extends Application{
 
     	stage.setTitle("GMIT - B.Sc. in Computing (Software Development) - AI Assignment 2021");
 		stage.setWidth(600);
-		stage.setHeight(630);
+		stage.setHeight(730);
 		stage.setOnCloseRequest((e) -> model.tearDown()); //Shut down the executor service
     	
 		VBox box = new VBox();
@@ -40,7 +40,7 @@ public class GameWindow extends Application{
     	view.setSprites(sprites); //Add the sprites to the view
     	placePlayer(); //Add the player
     	box.getChildren().add(view);
-		
+
     	view.draw(); //Paint the view
     	
 		//Display the window
@@ -84,7 +84,7 @@ public class GameWindow extends Application{
     	updateView(); 		
 	}
 	
-	private void updateView(){ 
+	public void updateView(){ 
 		view.setCurrentRow(currentRow);
 		view.setCurrentCol(currentCol);
 	}

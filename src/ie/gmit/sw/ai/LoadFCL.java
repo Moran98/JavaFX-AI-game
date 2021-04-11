@@ -16,7 +16,7 @@ public class LoadFCL {
 	// Load in the FCL file
 	public LoadFCL() {
 		fis = FIS.load(FILE, true);
-		fb = fis.getFunctionBlock("action");
+		fb = fis.getFunctionBlock("Commands");
 		
 		// Error Handling
 		if(fis == null) {
@@ -38,13 +38,12 @@ public class LoadFCL {
 	public double getActions(int ghost_health, int player_health, int player_damage) {
 	
 		// Set the variables
-		fis.setVariable("ghost_health", ghost_health);
-		fis.setVariable("player_health", player_health);
-		fis.setVariable("player_damage", player_damage);
+		fis.setVariable("health", ghost_health);
+		fis.setVariable("damage", player_damage);
 
 		fis.evaluate();
-		
-		Variable dapping = fb.getVariable("victory");
+				
+		Variable dapping = fb.getVariable("action");
 		JFuzzyChart.get().chart(fis);
 		JFuzzyChart.get().chart(dapping.getDefuzzifier(), "Dapping Level", true);
 		

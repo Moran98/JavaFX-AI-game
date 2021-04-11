@@ -99,15 +99,20 @@ public class GameModel {
 		}
 	}
 	
+	// Updated method so that when ghosts collide with walls they don't get stuck
 	public boolean isValidMove(int fromRow, int fromCol, int toRow, int toCol, char character){
-		if (toRow <= this.size() - 1 && toCol <= this.size() - 1 && this.get(toRow, toCol) == ' '){
-			this.set(fromRow, fromCol, '\u0020');
-			this.set(toRow, toCol, character);
-			return true;
-		}else{
-			return false; //Can't move
-		}
-	}
+        if (toRow >= 0 && toCol >= 0 && toRow <= this.size() - 1 && toCol <= this.size() - 1) {
+            if (this.get(toRow, toCol) == ' ') {
+                this.set(fromRow, fromCol, '\u0020');
+                this.set(toRow, toCol, character);
+                return true;
+            } else {
+                return false;
+            }
+        } else {
+            return false;
+        }
+    }
 	
 	public char[][] getModel(){
 		return this.model;
